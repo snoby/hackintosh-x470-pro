@@ -232,6 +232,15 @@ namespace WIOKit {
 	using t_PCIGetFunctionNumber = uint8_t (*)(IORegistryEntry *service);
 
 	/**
+	 *  Await for device publishing in IOService plane
+	 *
+	 *  @param obj  wait for (PCI) object publishing
+	 *
+	 *  @retval true on success
+	 */
+	EXPORT bool awaitPublishing(IORegistryEntry *obj);
+
+	/**
 	 *  Read PCI Config register
 	 *
 	 *  @param service  IOPCIDevice-compatible service.
@@ -258,7 +267,7 @@ namespace WIOKit {
 	 *
 	 *  @return valid computer type or ComputerAny
 	 */
-	EXPORT int getComputerModel();
+	EXPORT int getComputerModel() DEPRECATE("Use BaseDeviceInfo");
 
 	/**
 	 *  Retrieve computer model and/or board-id properties
@@ -270,7 +279,7 @@ namespace WIOKit {
 	 *
 	 *  @return true if relevant properties already are available, otherwise buffers are unchanged
 	 */
-	EXPORT bool getComputerInfo(char *model, size_t modelsz, char *board, size_t boardsz);
+	EXPORT bool getComputerInfo(char *model, size_t modelsz, char *board, size_t boardsz) DEPRECATE("Use BaseDeviceInfo");
 
 	/**
 	 *  Retrieve an ioreg entry by path/prefix
